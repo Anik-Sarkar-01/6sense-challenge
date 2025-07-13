@@ -12,7 +12,7 @@ const categorySchema = new Schema({
         unique: true,
         trim: true
     }
-}, { timestamps: true })
+}, { versionKey: false, timestamps: true })
 
 const Category = model('Category', categorySchema);
 
@@ -57,7 +57,7 @@ const productSchema = new Schema({
         ref: 'Category',
         required: [true, 'Category is required']
     }
-}, { timestamps: true });
+}, { versionKey: false, timestamps: true });
 
 
 const Product = model('Product', productSchema);
@@ -104,7 +104,7 @@ app.post('/products/create-product', async (req: Request, res: Response) => {
 
 app.patch('/products/:productId', async (req: Request, res: Response) => {
     const id = req.params.productId;
-    const {description, discount, status} = req.body;
+    const { description, discount, status } = req.body;
 
     const updatedBody = {
         description,
@@ -127,6 +127,49 @@ app.patch('/products/:productId', async (req: Request, res: Response) => {
         product
     })
 })
+
+app.get('/products', async (req: Request, res: Response) => {
+    const { filter, search } = req.query;
+    const query: any = {};
+
+    if (filter) {
+        const categoryDoc = await Category.findOne({ name: filter });
+        if (!categoryDoc) {
+            return res.status(404).json({ message: "Category not found" });
+        }
+        query.category = categoryDoc._id;
+    }
+
+    if (search) {
+        query.name = { $regex: search, $options: 'i' };
+    }
+
+    const products = await Product.find(query);
+
+    const finalProduct = products.map(product => {
+        const finalPrice = parseFloat((product.price - (product.price * product.discount / 100)).toFixed(2));
+
+        return {
+            description: product.description,
+            image: product.image,
+            status: product.status,
+            price: product.price,
+            discount: product.discount,
+            finalPrice: finalPrice,
+            category: product.category,
+            createdAt: product.createdAt,
+            updatedAt: product.updatedAt,
+        }
+
+    });
+
+
+    res.status(200).json({
+        success: true,
+        count: finalProduct.length,
+        finalProduct,
+    });
+});
 
 app.get('/', (req: Request, res: Response) => {
     res.send('Welcome to 6sense challenge app');
