@@ -26,16 +26,16 @@ A backend API built with **Express**, **MongoDB (Mongoose)**, and **TypeScript**
 
 | Method | Route           | Description       |
 |--------|------------------|-------------------|
-| POST   | `/categories`    | Create a category |
+| POST   | `/api/categories`    | Create a category |
 
 
 ### 🧾 Products
 
 | Method | Route           | Description                              |
 |--------|------------------|------------------------------------------|
-| POST   | `/products`      | Create a new product                     |
-| PUT    | `/products/:id`  | Update product status, discount, or description |
-| GET    | `/products`      | Get all products (with filter and search)          
+| POST   | `/api/products`      | Create a new product                     |
+| PUT    | `/api/products/:productId`  | Update product status, discount, or description |
+| GET    | `/api/products`      | Get all products (with filter and search)          
 
 ---
 
