@@ -4,7 +4,7 @@ A backend API built with **Express**, **MongoDB (Mongoose)**, and **TypeScript**
 
 ---
 
-## 📊 Data Model Diagram
+## Data Model Diagram
 
 ![Data Model Diagram](/diagram/data-model.png)
 
@@ -12,7 +12,7 @@ A backend API built with **Express**, **MongoDB (Mongoose)**, and **TypeScript**
 
 > Product belongs to one Category.  
 
-## ⚙️ Tech Stack
+## Tech Stack
 
 - Express.js
 - MongoDB (Mongoose)
@@ -20,16 +20,16 @@ A backend API built with **Express**, **MongoDB (Mongoose)**, and **TypeScript**
 
 ---
 
-## 📦 API Endpoints
+## API Endpoints
 
-### 🗂️ Categories
+### Categories
 
 | Method | Route           | Description       |
 |--------|------------------|-------------------|
 | POST   | `/api/categories`    | Create a category |
 
 
-### 🧾 Products
+### Products
 
 | Method | Route           | Description                              |
 |--------|------------------|------------------------------------------|
