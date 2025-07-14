@@ -9,6 +9,7 @@ A backend API built with **Express**, **MongoDB (Mongoose)**, and **TypeScript**
 ![Data Model Diagram](/diagram/data-model.png)
 
 > Category can have many Products.
+
 > Product belongs to one Category.  
 
 ## ⚙️ Tech Stack
