@@ -34,7 +34,7 @@ A backend API built with **Express**, **MongoDB (Mongoose)**, and **TypeScript**
 | Method | Route           | Description                              |
 |--------|------------------|------------------------------------------|
 | POST   | `/api/products`      | Create a new product                     |
-| PUT    | `/api/products/:productId`  | Update product status, discount, or description |
+| PATCH    | `/api/products/:productId`  | Update product status, discount, or description |
 | GET    | `/api/products`      | Get all products (with filter and search)          
 
 ---
